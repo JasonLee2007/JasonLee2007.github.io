@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>蠢商测试 · 测测你的FQ有多离谱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fff0dd, #ffdfb8);
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 252, 240, 0.96);
+            border-radius: 3rem;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+            padding: 2rem 1.8rem;
+            transition: 0.2s;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #c45c0c, #f49b2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress {
+            text-align: center;
+            background: #ffeed5;
+            border-radius: 40px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            font-weight: bold;
+            color: #b6540a;
+        }
+
+        .question-card {
+            background: #fffcf5;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 1.5rem 0;
+            border: 1px solid #ffd7a0;
+        }
+
+        .question-text {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #6a3a0c;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff3e6;
+            padding: 0.7rem 1rem;
+            border-radius: 100px;
+            border: 1px solid #ffe1b3;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .option.selected {
+            background: #ffdbb5;
+            border-color: #ff9f4a;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .option input {
+            accent-color: #ff8c2e;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .option label {
+            flex: 1;
+            font-size: 1rem;
+            color: #5e3a15;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .nav-btn {
+            background: #ffbc6e;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.1s;
+            box-shadow: 0 3px 0 #a35013;
+            color: #4e2a0a;
+        }
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #a35013;
+        }
+        .submit-btn {
+            background: linear-gradient(120deg, #f9862a, #e06410);
+            color: white;
+            font-size: 1.4rem;
+            padding: 0.9rem;
+            width: 100%;
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 6px 0 #903f00;
+        }
+        .submit-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #903f00;
+        }
+
+        .result-area {
+            margin-top: 2rem;
+            background: #fff1e0;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            display: none;
+            border: 2px solid #ffbc73;
+        }
+        .result-area.show {
+            display: block;
+        }
+        .result-type {
+            text-align: center;
+        }
+        .result-type img {
+            max-width: 180px;
+            border-radius: 2rem;
+            margin: 1rem auto;
+            background: #ffdbb5;
+            display: block;
+        }
+        .copy-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .copy-btn {
+            background: #f0a55a;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+        .copy-btn.green {
+            background: #548c2f;
+        }
+        .reset-test {
+            background: #c27e42;
+            margin-top: 1rem;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        .footer-tip {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #b16d2e;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d2b26;
+            color: #ffddbb;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            z-index: 999;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+        @media (max-width: 550px) {
+            .test-container {
+                padding: 1.2rem;
+            }
+            .question-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="test-container" id="app">
+    <h2>🧠 蠢商FQ · 无厘头大考卷 🎲</h2>
+    <div class="progress" id="progressText">第 1 / 20 题</div>
+    <div id="questionArea"></div>
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn">◀ 上一题</button>
+        <button class="nav-btn" id="nextBtn">下一题 ▶</button>
+    </div>
+    <button class="submit-btn" id="submitBtn">✨ 提交并查看蠢型 ✨</button>
+
+    <!-- 结果展示区 -->
+    <div id="resultArea" class="result-area">
+        <div id="resultContent"></div>
+        <div class="copy-buttons">
+            <button class="copy-btn" id="copyTextBtn">📋 一键复制文字+链接</button>
+            <button class="copy-btn green" id="copyImageInfoBtn">🖼️ 复制图片信息+结果</button>
+        </div>
+        <button class="reset-test" id="resetBtn">🔁 重新测试</button>
+    </div>
+    <div class="footer-tip">
+        💡 友情提示：题目纯属整蛊，不讲逻辑，只为爆笑！认真你就输啦~
+    </div>
+</div>
+<div id="toastMsg" class="toast-msg">✨ 已复制到剪贴板</div>
+
+<script>
+    // ----------------------------- 20道 离谱单选题（热点+无厘头）--------------------------------
+    const QUESTIONS = [
+        { text: "老师问“谁能解释一下‘负负得正’？”你抢答：“华强卖瓜！负负得正意思就是——不熟不熟，熟了反而生！” 你的反应是？", options: ["A. 兴奋拍桌，高喊萨日朗", "B. 沉默是金，但偷偷竖大拇指", "C. 反问老师：这瓜保熟吗？", "D. 直接冲出教室买瓜"], scores: [5,2,4,5] },
+        { text: "女友灵魂拷问：“如果我和雪山里的那只网红狐狸同时掉进冰窟窿，你先救谁？” 你回答：", options: ["A. 救狐狸！因为狐狸会报恩还给我直播流量", "B. 肯定救你，但我要先拍个抖音", "C. 大喊‘鸡汤来咯’然后跳下去一起泡澡", "D. 谁都不救，我开直播记录历史"], scores: [5,3,4,5] },
+        { text: "老板突然说：“我们要对齐颗粒度，底层逻辑打通一下。” 你立刻：", options: ["A. 扛起一袋大米，问老板颗粒够不够", "B. 打开淘宝搜索‘颗粒度对齐器’", "C. 把虎哥过江的视频发给老板，说这就是底层逻辑", "D. 倒立旋转并大喊‘拿胶片来！赋能！闭环！’"], scores: [5,4,5,3] },
+        { text: "你被抓进精神病院。院长问你：为什么2+2=5？你回答：", options: ["A. 因为2+2=4，但4+1=5", "B. 因为忠诚！", "C. 因为奥威尔死了", "D. 因为你要出院"], scores: [4,2,5,3] },
+        { text: "军训中你不小心踩中地雷，你会", options: ["A. 立刻拍照并发朋友圈", "B. 打电话给保险公司问问地雷踩坏赔多少钱", "C. 先问问豆包地雷的结构，好好研究一下。知己知彼方能百战不殆", "D. 让教官帮忙代踩一会，先去歇几分钟"], scores: [5,3,4,5] },
+        { text: "服装店里，促销员说大码“买一送一”，你激动地抱起旁边的大妈问“送的这个是大妈吗？”", options: ["A. 我是故意的，我想上热搜", "B. 纯属口误，但死不承认", "C. 立马打开手机直播", "D. 问大妈‘你这瓜保熟吗’转移注意力"], scores: [5,2,4,5] },
+        { text: "考试时你遇到不会的简答题，你会：", options: ["A. 画一个二维码并写答案在此请扫码", "B. 色诱监考老师给出答案", "C. 起身大喊这道题选B", "D. 直接交白卷，说这是行为艺术"], scores: [4,5,3,5] },
+        { text: "你和对象去吃萨莉亚，对象提出要300万彩礼/嫁妆，你会：", options: ["A. 假装犹豫地答应，然后一本正经的去TA家见父母中途突然离开，告诉TA‘我讨厌你爸妈的说话方式’然后分手。未来TA会和父母闹僵，对下一任将要求400万然后一辈子单身", "B. 爽快答应，让TA付饭钱，承诺明天汇款，然后失踪", "C.仰天长啸。马上去银行拿出300万越南盾约合人民币778元，霸气地甩到TA脸上砸死TA。谁让TA不说单位呢", "D.卑微地申请分期付款然后撸网贷，但写TA的名字"], scores: [5,2,4,5] },
+        { text: "部门团建玩‘狼人杀’，你抽到预言家，第一句话是：", options: ["A. 我预言，这个瓜不保熟，谁买谁蠢", "B. 我验了3号，他是‘雪山救狐’嫌疑人", "C. 全体起立！你滴盐我滴醋潮汕人民注意米和锅晚睡！", "D. 直接自爆，然后大呼我是东郭先生"], scores: [4,5,5,5] },
+        { text: "你、劳大、懂王和汉尼拔乘坐左巴扬机长的航班，但飞机上只有4个降落伞，你该怎么办？", options: ["A. 把左巴扬机长扔下去", "B. 告诉汉尼拔说开饭了", "C. 立刻美团下单降落伞，加急配送", "D. 虚心求教懂王如何画K线然后炒股赚钱，请劳大下飞机了喝冰红茶，反正飞机没事要降落伞干嘛"], scores: [4,3,5,5] },
+        { text: "好兄弟失恋了，你安慰他：", options: ["A.what can I say man? manba out !", "B. 送他一瓶冰红茶，并放《see you again》BGM", "C. 带他去找李新野，拜读人妻约会指南", "D. 让他把前女友当成‘雪山狐’，去雪地找她"], scores: [3,4,5,5] },
+        { text: "校长在晨会上演讲‘脚踏实地’，你突然上台抢麦：", options: ["A. 开始计算全校人跺脚把教学楼震塌的共振频率", "B. 高呼‘尊嘟假嘟，脚踏实地能卖瓜吗？’", "C. 立马接话‘脚踏实地不如拉屎放屁’", "D. 邀请校长一起跳‘科目三’"], scores: [4,5,5,4] },
+        { text: "你是程序员，死后阎王让你做生死簿的全自动后台管理系统，你会：", options: ["A. 用Python写个脚本自动处理", "B. 立刻索要编制、五险一金和双休", "C. 怂恿阎王充值腾讯云的云储存包年VIP", "D. 假装接受，然后在阳间售卖增寿套餐，多活一年交一万"], scores: [5,3,5,4] },
+        { text: "领导说你没资格敬酒，你直接：", options: ["A. 往领导杯里倒工业酒精给他灌下去", "B. 大吼‘华强！这酒保熟不？’", "C. 微笑告诉领导‘光顾着给您敬酒了，现在敬敬你祖宗’然后把酒浇地上", "D.高喊‘喝点马尿你是心高气傲；不喝我的酒你生死难料’"], scores: [5,5,2,4] },
+        { text: "安倍晋三和肯尼迪合体直播带货，卖的是微型纯铜毒剂，你会？", options: ["A. 下单100个，相信用完智商直冲250", "B. 弹幕刷‘保熟吗？不熟退钱’", "C. 打开直播连麦，夸赞他们脑洞大开而又心胸宽广", "D. 直接卸载购物APP，觉得自己已经够蠢"], scores: [5,4,5,2] },
+        { text: "老师布置作文《我的理想》，你写：", options: ["A. 去维也纳艺术学院进修", "B. 当雪山里那只酱板鸭的经纪人", "C. 开一家‘鸡汤来咯’连锁餐厅", "D. 加入光州跑男团队，一秒六棍做回自己"], scores: [4,5,5,5] },
+        { text: "情人节你送给对象999朵玫瑰，但附带一张卡片写着“此玫瑰保熟，售后找华强”，对象生气，你补救：", options: ["A. 大喊‘萨日朗，华强救我’", "B. 掏出背带裤篮球玩偶说这是定情信物", "C. 放《一笑江湖》音乐，现场跳求饶舞", "D. 跪下说‘其实我是雪山酱板鸭变的，原谅我’"], scores: [5,4,4,5] },
+        { text: "公司要选‘最佳员工’，你拉票宣言：", options: ["A. 我每天喝‘鸡汤来咯’并赋能公司", "B. 我能把瓜卖得比郝哥还牛，颗粒度最齐", "C. 我是北极熊骑秦始皇型人才，啥都能扛", "D. 选我，我带大家去雪山救狐团建"], scores: [5,5,4,5] },
+        { text: "最近流行‘AI扩图’，你把自拍照扩成东北雨姐扛粉条，你觉得：", options: ["A. 绝了，这就是我的赛博人生", "B. 立刻设为头像，并@所有人", "C. 拿去给算命先生测蠢商", "D. 打印出来贴工位，辟邪"], scores: [5,5,4,4] },
+        { text: "你在路边捡到一张纸条写着‘鸡你太美’，你会？", options: ["A. 原地跳舞并大喊背带裤", "B. 当成藏宝图，去苞米地挖宝", "C. 认为这是华强的暗号，去瓜摊接头", "D. 吃掉纸条，获得蠢力加持"], scores: [4,5,5,5] }
+    ];
+
+    // 确保每题4个选项且分值对应
+    const TOTAL_QS = QUESTIONS.length;  // =20
+
+    // 用户答案数组 (存储选项索引 0~3)
+    let userAnswers = new Array(TOTAL_QS).fill(null);
+    let currentIndex = 0;      // 当前显示第几题 (0-based)
+
+    // DOM 元素
+    const questionArea = document.getElementById('questionArea');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultAreaDiv = document.getElementById('resultArea');
+    const resultContent = document.getElementById('resultContent');
+    const progressSpan = document.getElementById('progressText');
+    const resetBtn = document.getElementById('resetBtn');
+    const copyTextBtn = document.getElementById('copyTextBtn');
+    const copyImageInfoBtn = document.getElementById('copyImageInfoBtn');
+
+    // 显示toast
+    function showToast(msg) {
+        const toast = document.getElementById('toastMsg');
+        toast.textContent = msg || '✨ 已复制到剪贴板';
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, 2000);
+    }
+
+    // 渲染当前题目
+    function renderCurrentQuestion() {
+        const q = QUESTIONS[currentIndex];
+        const selectedIdx = userAnswers[currentIndex];
+        let html = `<div class="question-card"><div class="question-text">${currentIndex+1}. ${q.text}</div><div class="options">`;
+        q.options.forEach((opt, idx) => {
+            const isChecked = (selectedIdx === idx);
+            const checkedAttr = isChecked ? 'checked' : '';
+            html += `
+                <div class="option ${isChecked ? 'selected' : ''}" data-opt-index="${idx}">
+                    <input type="radio" name="question" value="${idx}" id="opt_${idx}" ${checkedAttr}>
+                    <label for="opt_${idx}">${opt}</label>
+                </div>
+            `;
+        });
+        html += `</div></div>`;
+        questionArea.innerHTML = html;
+
+        // 绑定每个option点击事件高亮
+        const optionDivs = document.querySelectorAll('.option');
+        optionDivs.forEach(div => {
+            const radio = div.querySelector('input');
+            radio.addEventListener('change', (e) => {
+                const val = parseInt(e.target.value);
+                // 更新userAnswers
+                userAnswers[currentIndex] = val;
+                // 重新渲染当前题以刷新高亮样式（简单粗暴但稳定）
+                renderCurrentQuestion();
+            });
+        });
+        // 更新进度
+        progressSpan.innerText = `第 ${currentIndex+1} / ${TOTAL_QS} 题`;
+    }
+
+    // 上一题
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderCurrentQuestion();
+        } else {
+            showToast("已经在第一题啦！");
+        }
+    }
+
+    // 下一题
+    function nextQuestion() {
+        if (currentIndex < TOTAL_QS - 1) {
+            currentIndex++;
+            renderCurrentQuestion();
+        } else {
+            showToast("已经是最后一题，点击提交查看蠢商结果吧！");
+        }
+    }
+
+    // 检查所有题目是否已答
+    function allAnswered() {
+        for (let i = 0; i < TOTAL_QS; i++) {
+            if (userAnswers[i] === null) return false;
+        }
+        return true;
+    }
+
+    // 计算总分以及蠢类型
+    function computeResult() {
+        let totalScore = 0;
+        for (let i = 0; i < TOTAL_QS; i++) {
+            const ansIdx = userAnswers[i];
+            if (ansIdx !== null) {
+                totalScore += QUESTIONS[i].scores[ansIdx];
+            }
+        }
+        // 理论最高分5*20=100 最低1*20=20
+        let type = "";
+        let imgSrc = "";
+        let description = "";
+        if (totalScore <= 40) {
+            type = "🧸 人间清醒·微蠢星人";
+            imgSrc = "assets/pai.jpg";
+            description = "你只是偶尔犯傻，但基本能躲过离谱陷阱。属于朋友圈里的理智担当，建议多和蠢王交朋友提升喜剧效果。";
+        } else if (totalScore <= 60) {
+            type = "🐣 跟风猹猹·互联网显眼包";
+            imgSrc = "assets/dog.jpg";
+            description = "你容易被热梗带偏，热衷于‘尊嘟假嘟’‘大貔貅’，蠢得可爱，常驻热搜预备役。";
+        } else if (totalScore <= 80) {
+            type = "🍉 逻辑黑洞·保熟专业户";
+            imgSrc = "assets/sanmao.jpg";
+            description = "你的大脑堪比盘山公路，坚信华强哲学，能把任何话题拐到买瓜上。FQ指数破表，是朋友圈欢乐源泉。";
+        } else {
+            type = "👑 史诗蠢王·雪山救狐本尊";
+            imgSrc = "assets/finger.jpg";
+            description = "恭喜！你已超越人类愚蠢极限，雪山救狐队都想招你当队长。建议把此结果打印裱起来，供后人瞻仰。";
+        }
+        // 若图片加载失败，回退占位
+        const fallbackImg = "https://picsum.photos/200/200?random=99";
+        return { totalScore, type, imgSrc, description, fallbackImg };
+    }
+
+    // 展示结果，并且隐藏问卷按钮区
+    function showResult() {
+        if (!allAnswered()) {
+            let firstMissing = userAnswers.findIndex(ans => ans === null);
+            showToast(`第${firstMissing+1}题未选，请答完再提交~ 蠢也要认真哦`);
+            // 跳转到未答题
+            currentIndex = firstMissing;
+            renderCurrentQuestion();
+            return;
+        }
+        const { totalScore, type, imgSrc, description, fallbackImg } = computeResult();
+        // 生成结果html
+        const imageTag = `<img src="${imgSrc}" alt="蠢型图片" onerror="this.src='${fallbackImg}'" style="max-width:180px; border-radius: 2rem;">`;
+        const resultHtml = `
+            <div class="result-type">
+                <h3>📊 你的蠢商(FQ)总分: ${totalScore} / ${TOTAL_QS*5}</h3>
+                <h2>✨ ${type} ✨</h2>
+                ${imageTag}
+                <p style="margin-top: 12px;">${description}</p>
+                <hr style="margin: 1rem 0;">
+                <p style="font-size:0.9rem;">🌐 测试地址: ${window.location.href}<br>🎉 蠢商测试FQ官方整蛊 — 减压神器，欢迎分享朋友圈！</p>
+            </div>
+        `;
+        resultContent.innerHTML = resultHtml;
+        resultAreaDiv.classList.add('show');
+        // 可选隐藏问卷区域按钮 (保留重新测试)
+        document.querySelector('.nav-buttons').style.display = 'none';
+        submitBtn.style.display = 'none';
+        document.getElementById('questionArea').style.display = 'none';
+        progressSpan.style.display = 'none';
+        // 存储当前结果用于复制
+        window.currentResultData = { totalScore, type, description, imgSrc };
+    }
+
+    // 重置测试
+    function resetTest() {
+        userAnswers = new Array(TOTAL_QS).fill(null);
+        currentIndex = 0;
+        resultAreaDiv.classList.remove('show');
+        document.querySelector('.nav-buttons').style.display = 'flex';
+        submitBtn.style.display = 'block';
+        document.getElementById('questionArea').style.display = 'block';
+        progressSpan.style.display = 'block';
+        renderCurrentQuestion();
+    }
+
+    // 复制文字 (结果+本网站URL+介绍)
+    function copyTextResult() {
+        if (!resultAreaDiv.classList.contains('show')) {
+            showToast("请先提交测试，再复制结果哦");
+            return;
+        }
+        const { totalScore, type, description } = window.currentResultData || computeResult();
+        const shareText = `【蠢商测试FQ】我的蠢商得分：${totalScore}分，蠢型：${type}\n${description}\n🔗 测试链接：${window.location.href}\n🎉 快来测测你的FQ指数，无厘头整蛊，朋友圈爆笑神器！`;
+        navigator.clipboard.writeText(shareText).then(() => {
+            showToast("✅ 文字+链接已复制，快去发朋友圈！");
+        }).catch(() => showToast("复制失败，手动复制吧"));
+    }
+
+    // 复制图片信息（含图片链接+结果，方便用户保存图片或发圈）
+    function copyImageInfo() {
+        if (!resultAreaDiv.classList.contains('show')) {
+            showToast("请先提交测试，再复制图片信息");
+            return;
+        }
+        const { totalScore, type, description, imgSrc } = window.currentResultData || computeResult();
+        const imageInfo = `🎭 蠢商测试蠢型图片参考: ${imgSrc} \n蠢型：${type}\n蠢商得分：${totalScore}\n${description}\n网站地址：${window.location.href}\n(你可以保存上方图片配合文案发朋友圈，欢乐加倍)`;
+        navigator.clipboard.writeText(imageInfo).then(() => {
+            showToast("🖼️ 蠢型图片链接+结果已复制！可配合图片发圈");
+        }).catch(() => showToast("复制失败，手动复制吧"));
+    }
+
+    // 事件绑定
+    prevBtn.addEventListener('click', prevQuestion);
+    nextBtn.addEventListener('click', nextQuestion);
+    submitBtn.addEventListener('click', showResult);
+    resetBtn.addEventListener('click', resetTest);
+    copyTextBtn.addEventListener('click', copyTextResult);
+    copyImageInfoBtn.addEventListener('click', copyImageInfo);
+
+    // 初始化渲染
+    renderCurrentQuestion();
+
+    // 优雅处理图片占位（assets图片加载错误时全局替换）
+    window.addEventListener('error', (e) => {
+        if (e.target.tagName === 'IMG' && e.target.src.includes('assets/')) {
+            e.target.src = 'https://picsum.photos/200/200?random=fallback';
+        }
+    }, true);
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>蠢商百科 · 欢迎进入FQ世界</title>
+    <style>
+        /* 样式保持不变（原样） */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #fff2e0, #ffdbb5);
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 250, 235, 0.95);
+            border-radius: 3rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+            padding: 2rem 1.5rem;
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #c45c0c, #f49b2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .subhead {
+            text-align: center;
+            color: #b65f1a;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #ffcd94;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 0.5rem;
+        }
+        .types-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .type-card {
+            background: #fff6ea;
+            border-radius: 2rem;
+            width: 240px;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            border: 1px solid #ffc489;
+        }
+        .type-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            background: #ffdead;
+            margin-bottom: 1rem;
+        }
+        .type-card h3 {
+            color: #b4510c;
+            font-size: 1.4rem;
+        }
+        .type-card p {
+            color: #7a4a1a;
+            font-size: 0.9rem;
+        }
+        .timeline-section {
+            margin: 2rem 0;
+        }
+        .timeline-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #b04500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .timeline-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0.5rem 1.5rem;
+            scrollbar-width: thin;
+        }
+        .timeline-card {
+            min-width: 260px;
+            background: #fff9f0;
+            border-radius: 1.8rem;
+            padding: 1.2rem;
+            border-left: 12px solid #ff9933;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .timeline-card .year {
+            font-weight: bold;
+            color: #ff7700;
+            font-size: 1.3rem;
+        }
+        .timeline-card .case-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .timeline-card p {
+            color: #5a3a1a;
+        }
+        .btn-block {
+            text-align: center;
+            margin: 2.5rem 0 1rem;
+        }
+        .btn-lower {
+            background: linear-gradient(120deg, #b96f30, #8b4b1c);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 7px 0 #542c0e;
+            transition: 0.07s linear;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-lower:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 0 #542c0e;
+        }
+        .footer-nav {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #b56a2a;
+        }
+        a {
+            text-decoration: none;
+            color: #c2671a;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>📖 蠢商 · 百科全书 🧠💥</h1>
+    <div style="text-align: center;"><span class="subhead">Foolishness Quotient · 人类迷惑行为大赏</span></div>
+
+    <h2>🤪 主流蠢型分类</h2>
+    <div class="types-grid">
+        <div class="type-card">
+            <img src="assets/pai.jpg" alt="逻辑黑洞" onerror="this.src='https://picsum.photos/200/150?random=1';">
+            <h3>🧩 逻辑黑洞型</h3>
+            <p>坚信“下雨是因为地太干”，买瓜必挨揍，脑回路盘山公路。</p>
+        </div>
+        <div class="type-card">
+            <img src="assets/dog.jpg" alt="跟风猹猹" onerror="this.src='https://picsum.photos/200/150?random=2';">
+            <h3>🐕 网络跟风猹</h3>
+            <p>“尊嘟假嘟”挂嘴边，AI换脸喊老公，韭菜届天选之子。</p>
+        </div>
+        <div class="type-card">
+            <img src="assets/sanmao.jpg" alt="反智王者" onerror="this.src='https://picsum.photos/200/150?random=3';">
+            <h3>👑 反智·史诗蠢王</h3>
+            <p>把洗面奶当酸奶喝，问“东北雨姐的苞米地里能挖出iPhone吗”</p>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <div class="timeline-title">⏳ 高能蠢商里程碑 · 左右滑动👇</div>
+        <div class="timeline-scroll">
+            <div class="timeline-card">
+                <div class="year">2023 · 华强纪元</div>
+                <div class="case-title">🍉 保熟门惨案</div>
+                <p>一男子买瓜时大喊“萨日朗”，并试图用脸接瓜皮，最终荣获年度FQ榜首。</p>
+            </div>
+            <div class="timeline-card">
+                <div class="year">2024 · 雪山救狐</div>
+                <div class="case-title">🦊 救狐行动·反向封神</div>
+                <p>网红直播“雪山救狐”，结果把自己埋雪里，狐狸反手报警，蠢值突破天际。</p>
+            </div>
+            <div class="timeline-card">
+                <div class="year">2024 · 东北雨姐效应</div>
+                <div class="case-title">🌽 苞米地里的哲学家</div>
+                <p>某大学生坚信雨姐的苞米地能挖出“上古AI神器”，挖了三天三夜。</p>
+            </div>
+            <div class="timeline-card">
+                <div class="year">2025 · 遥遥领先の梗</div>
+                <div class="case-title">📱 “三折叠智商”</div>
+                <p>为抢“遥遥领先”手机，把自家猫抵押给黄牛，最终猫反手当了网红。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-block">
+        <a href="change.html" class="btn-lower" id="lowerBtn">⬇️ 降低蠢商 · 点我抢救 ⬇️</a>
+    </div>
+    <div class="footer-nav">
+        🧠 温馨提示：高蠢商不可怕，放弃治疗才尴尬。本百科纯属胡闹，开心为上。
+    </div>
+</div>
+
+<script>
+    // 给“降低蠢商”按钮添加点击标记，告诉 change.html 可以自动播放音乐
+    const lowerBtn = document.getElementById('lowerBtn');
+    lowerBtn.addEventListener('click', function() {
+        sessionStorage.setItem('allowAutoPlay', 'true');
+        // 注意：链接会正常跳转，这里只是设置标记，不阻止默认行为
+    });
+</script>
+</body>
+</html>

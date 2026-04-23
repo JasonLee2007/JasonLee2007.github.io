@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>蠢商测试(FQ) - 官方整蛊中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fff9e8 0%, #ffe6c9 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 250, 235, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 215, 150, 0.6);
+            padding: 2rem 1.5rem;
+            transition: all 0.2s;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #d96c0e, #f6b352, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 5px 5px 0 #ffdd99;
+            margin-bottom: 1rem;
+            word-break: keep-all;
+        }
+
+        .sub {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #b45f1b;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            border: none;
+            background: #ffb347;
+            background: linear-gradient(120deg, #ff9a3c, #ff6f20);
+            padding: 1rem 2rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #a34100;
+            transition: 0.07s linear;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #a34100;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(120deg, #7c6e65, #5c4e44);
+            box-shadow: 0 8px 0 #3a2e26;
+        }
+
+        /* 手风琴 */
+        .accordion {
+            margin: 2.5rem 0 1.5rem;
+            background: #fff2e0;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+        }
+
+        details {
+            background: #fff1e0;
+            margin: 0.8rem 0;
+            border-radius: 2rem;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #ffd9a5;
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #b4510c;
+        }
+
+        .qa-answer {
+            margin-top: 0.8rem;
+            color: #6b3e00;
+            padding-left: 1rem;
+            border-left: 4px solid #ffa559;
+        }
+
+        .notice {
+            background: #fff1cc;
+            border-left: 8px solid #ff8800;
+            padding: 1rem;
+            border-radius: 28px;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            color: #9b4b00;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #9b6a3b;
+            border-top: 1px dashed #ffcb8a;
+            padding-top: 1.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #b45a1c;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.6rem;
+            }
+            .btn {
+                font-size: 1.2rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧠 蠢商测试 · FQ 🧩</h1>
+    <div class="sub">Foolishness Quotient · 越蠢越快乐</div>
+
+    <div class="button-group">
+        <a href="intro.html" class="btn">📖 了解FQ</a>
+        <a href="test.html" class="btn">🎯 进入测试</a>
+    </div>
+
+    <!-- 手风琴组件 QA -->
+    <div class="accordion">
+        <details >
+            <summary>🤔 这个网站真的免费吗？</summary>
+            <div class="qa-answer">完全免费！蠢不要钱，笑不要税～ 纯属娱乐整蛊 🎉</div>
+        </details>
+        <details>
+            <summary>🧪 测试结果准不准？</summary>
+            <div class="qa-answer">准到离谱！比华强买的瓜还保熟～（当然是假的，图一乐）</div>
+        </details>
+        <details>
+            <summary>📊 会泄露我的隐私吗？</summary>
+            <div class="qa-answer">绝不收集任何信息，连你家猫的毛都不会知道一根🐱</div>
+        </details>
+        <details>
+            <summary>😜 可以分享朋友圈吗？</summary>
+            <div class="qa-answer">当然！最好让朋友也来测测谁是“蠢王” 一键复制就行</div>
+        </details>
+    </div>
+
+    <div class="notice">
+        💡 友情提示：本测试纯属无厘头搞笑，仅供减压大笑，认真你就输了！一切结果不代表真实智商，开心第一。
+    </div>
+
+    <div class="footer-links">
+        <a href="contact.html">📌 联系我们 (整蛊艺术家)</a>
+        <a href="privacy.html">🔒 隐私政策 (纯静态哦)</a>
+    </div>
+</div>
+
+
+</body>
+</html>
